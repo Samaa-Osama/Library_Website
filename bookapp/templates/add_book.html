@@ -1,0 +1,23 @@
+{% extends "adminbase.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Add Book - Hayah Online Library</title>
+{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/AddBooksStyle.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="addbook">
+    <h1>Add Book</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% comment %} <input type="text" name="new_category" placeholder="New Category Name" id="new_category"> {% endcomment %}
+        <button type="submit" class="btn">Add Book</button>
+    </form>
+</div>
+{% endblock %}

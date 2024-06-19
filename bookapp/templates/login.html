@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Login - Hayah online library</title>
+{% endblock %}
+
+{% load static %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="container" style="height: 400px;">
+    <div class="header">
+        <h2>Login</h2>
+    </div>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-control">
+            <label>Username:</label>
+            <input type="text" name="username" class="form-control" placeholder="Enter Username" maxlength="100" autofocus required id="id_username">
+        </div>
+        <div class="form-control">
+            <label>Password:</label>
+            <input type="password" name="password" class="form-control" placeholder="At least eight characters" maxlength="100" required id="id_password">
+        </div>
+        {% for message in messages %}
+        <p class="successMsg">{{ message }}</p>
+        {% endfor %}
+        <div id="haveAnAccount">
+            <p>Don't have an account?</p>
+            <a href="{% url 'register' %}" class="register">Register</a>
+        </div>
+        <button type="submit" class="btn">Login</button>
+    </form>
+    
+</div>
+{% endblock %}

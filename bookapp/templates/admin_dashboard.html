@@ -1,0 +1,34 @@
+{% extends "adminbase.html" %}
+
+{% load static %}
+
+{% block title %}
+    <title>Dashboard - Hayah Online Library</title>
+{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <h1>Admin Dashboard</h1>
+    <div class="stats">
+        <div class="stat">
+            <span class="stat-title">Total Books:</span>
+            <span class="stat-value">{{ total_books }}</span>
+        </div>
+        <div class="stat">
+            <span class="stat-title">Total Borrowed Books:</span>
+            <span class="stat-value">{{ total_borrowed_books }}</span>
+        </div>
+        <div class="stat">
+            <span class="stat-title">total users:</span>
+            <span class="stat-value">{{ users }}</span>
+        </div>
+        
+        
+        <!-- Add more stats here -->
+    </div>
+</div>
+{% endblock %}

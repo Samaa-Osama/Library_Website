@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{%block title%}
+    <title>categories - Hayah online library</title>
+{%endblock%}
+
+{%block content%}
+
+<h1>{{ category }} Books</h1>  
+    <div class="book-container">
+        {% for book in category.books.all %}
+        <div class="book">
+            <a href = " {% url 'book_detail' book.slug %}"><img src="{{ book.cover_image.url }}" alt="{{ book.title }}"></a>
+            <h2>{{ book.title }}</h2>
+            <p>{{ book.author }}</p>
+        </div>
+        {% endfor %}
+    </div> 
+
+{%endblock%}

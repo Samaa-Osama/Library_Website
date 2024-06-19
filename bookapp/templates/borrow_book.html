@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    <title>{{ book.title }} Borrow - Hayah Online Library</title>
+{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/borrowbook.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="borrowbook">
+<h2>Borrow {{ book.title }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Borrow</button>
+</form>
+</div>
+{% endblock %}

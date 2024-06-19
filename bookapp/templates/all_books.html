@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{%block title%}
+    <title>All Books - Hayah online library</title>
+{%endblock%}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{%static 'css/all_books.css' %}">
+{% endblock %}
+
+{%block content%}
+<div id="allbook">
+    <h1 class="allbooks">All Books</h1>
+    <div class="book-container">
+        {% for book in books %}
+        <div class="book">
+            <a href = " {% url 'book_detail' book.slug %}"><img src="{{ book.cover_image.url }}" alt="{{ book.title }}"></a>
+            <h2>{{ book.title }}</h2>
+            <p>{{ book.author }}</p>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{%endblock%}

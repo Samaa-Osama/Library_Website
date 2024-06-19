@@ -1,0 +1,33 @@
+{% extends "adminbase.html" %}
+
+{% load static %}
+
+{% block title %}
+    <title>Admin Profile - Hayah Online Library</title>
+{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/AdminProfileStyle.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="admin_profile">
+    <form method="post">
+        <h1>Update Profile</h1>
+        {% csrf_token %}
+        <div id="form-control">
+            <label for="id_email">New Email:</label>
+            {{ form.email }}
+        </div>
+        <div id="form-control">
+            <label for="id_new_password1">New Password:</label>
+            {{ form.new_password1 }}
+        </div>
+        <div id="form-control">
+            <label for="id_new_password2">Confirm New Password:</label>
+            {{ form.new_password2 }}
+        </div>
+        <button type="submit" class="btn">Update Profile</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Search Results - Hayah online library</title>
+{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/searchresult.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Search Results</h1>
+        <ul class="book-list">
+            {% if searched_books %}
+                {% for book in searched_books %}
+                    <li class="book-item">
+                        <div class="book-details">
+                            <a href="{% url 'book_detail' book.slug %}">
+                                <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+                            </a>
+                            <h2>Title: {{ book.title }}</h2>
+                            <p>Author: {{ book.author }}</p>
+                        </div>
+                        <div class="book-actions">
+                            <a href="{% url 'book_detail' book.slug %}" class="btn">Details</a>
+                            {% if book.availability %}
+                                <a href="{% url 'borrow_book' book.slug %}" class="btn">Borrow</a>
+                            {% else %}
+                                <span class="unavailable-message">This book is currently unavailable for borrowing.</span>
+                            {% endif %} 
+                            
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <div>
+                    <h3>Book not available</h3>
+                </div>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

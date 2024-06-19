@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Home - Hayah online library</title>
+{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="library-container">
+    <div class="library-info">
+        <h4>Hayah Library provides you</h4>
+        <ul>
+            <li>Access to a vast collection of books from anywhere at any time.</li>
+            <li>Convenience of browsing, borrowing, and returning books online.</li>
+            <li>Opportunity for readers to discover new authors and genres easily.</li>
+            <li>Ability to avoid physical library constraints such as limited operating hours.</li>
+            <li>Eco-friendly option that reduces the need for printed materials.</li>
+            <li>Potential for enhanced organization and categorization of books for efficient searching.</li>
+            <li>Community features like book reviews, recommendations, and discussions to engage users.</li>
+        </ul>        
+    </div>
+    <div class="block">
+        <h2>Reading gives one person more than one life</h2>
+    </div>
+</div>
+
+<!-- Recommended Books -->
+<div class="homebooks">
+    <div class="recommended-books">
+        <h4 class="booktype">Recommended Books</h4>
+        <div class="Tbooks">
+            {% for book in recommended_books %}
+            <div class="book">
+                <a href="{% url 'book_detail' book.slug %}"><img src="{{ book.cover_image.url }}" alt="{{ book.title }}"></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <hr>
+    
+    <!-- Top Fiction Books -->
+    <div class="top-fiction-books">
+        <h4 class="booktype">Top Fiction Books</h4>
+        <div class="Tbooks">
+            {% for book in fiction_books %}
+            <div class="book">
+                <a href="{% url 'book_detail' book.slug %}"><img src="{{ book.cover_image.url }}" alt="{{ book.title }}"></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <hr>
+    
+    <!-- Top Business Books -->
+    <div class="top-business-books">
+        <h4 class="booktype">Top Business Books</h4>
+        <div class="Tbooks">
+            {% for book in business_books %}
+            <div class="book">
+                <a href="{% url 'book_detail' book.slug %}"><img src="{{ book.cover_image.url }}" alt="{{ book.title }}"></a>
+            </div>
+            {% endfor %}
+        </div> 
+    </div>
+
+</div>
+
+{% endblock %}

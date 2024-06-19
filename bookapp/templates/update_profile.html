@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    <title>User Profile - Hayah Online Library</title>
+{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/update_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="udateuser">
+    <h2>Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div id="form-control">
+            <label>Email:</label>
+            {{ form.email }}
+        </div>
+        <div id="form-control">
+            <label>New Password:</label>
+            {{ form.password1 }}
+        </div>
+        <div id="form-control">
+            <label>Confirm New Password:</label>
+            {{ form.password2 }}
+        </div>
+        <button type="submit" class="btn">Update</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "adminbase.html" %}
+
+{% load static %}
+
+{% block title %}
+    <title>Admin search - All Books</title>
+{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/admin_all_books.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Search Books</h1>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'admin_search_books' %}" method="get">
+        <div class="input-group">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Book" aria-label="Search" name="q">
+            <select class="custom-select" name="search_type">
+                <option value="title" selected>Title</option>
+                <option value="author">Author</option>
+                <option value="category">Category</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+
+    {% if searched_books %}
+    <ul class="book-list">
+        {% for book in searched_books %}
+        <li class="book-item">
+            <div class="book-details">
+                <h2>{{ book.title }}</h2>
+                <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+                <p>{{ book.author }}</p>
+                <p>{{ book.category.all|join:", " }}</p>
+                <p>{{ book.price }}</p>
+                <a class="btn" href="{% url 'edit_book' book.pk %}">Edit</a>
+                <a class="btn" href="{% url 'delete_book' book.pk %}">Delete</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div>
+        <h3>No books found</h3>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

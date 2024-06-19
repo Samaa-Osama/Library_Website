@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    <title>{{ book.title }} Details - Hayah Online Library</title>
+{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/book_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="bookdetails">
+    <div class="book-details">
+        <h2>{{ book.title }}</h2>
+        <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" id="book-cover">
+        <p class="author">Author: {{ book.author }}</p>
+        <p class="summary">Summary: {{ book.summary }}</p>
+        
+         {% if book.availability %}
+            <a href="{% url 'borrow_book' book.slug %}" class="btn">Borrow</a>
+        {% else %}
+            <p class="unavailable-message">This book is currently unavailable for borrowing.</p>
+        {% endif %} 
+    </div>
+
+    <div class="similar-books">
+        <h3>Similar Books</h3>
+        <ul class="similar_books">
+            {% for similar_book in similar_books %}
+                <li>
+                    <a href="{% url 'book_detail' similar_book.slug %}">
+                        <img src="{{ similar_book.cover_image.url }}" alt="{{ similar_book.title }}" class="book-thumbnail">
+                        <p class="book-title">{{ similar_book.title }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+    
+{% endblock %}

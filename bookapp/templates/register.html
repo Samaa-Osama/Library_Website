@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Sign Up - Hayah online library</title>
+{% endblock %}
+
+{% load static %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="container">
+    <div class="header">
+        <h2>Sign Up</h2>
+    </div>
+    <form action="#" method="POST">
+        {% csrf_token %}
+        <div class="form-control">
+            <label>Username:</label>
+            {{ register_form.username }}
+        </div>
+        <div class="form-control">
+            <label>Email:</label>
+            {{ register_form.email }}
+        </div>
+        <div class="form-control">
+            <label>Password:</label>
+            {{ register_form.password1 }}
+        </div>
+        <div class="form-control">
+            <label>Confirm Password:</label>
+            {{ register_form.password2 }}
+        </div>
+        {{ register_form.errors }}
+        <div id="haveAnAccount">
+            <p>Already have an account?</p>
+            <a href="{% url 'login' %}" class="btnone"><strong>Login</strong></a>
+        </div>
+        <button type="submit" class="btn">Register</button>
+    </form>
+</div>
+{% endblock %}

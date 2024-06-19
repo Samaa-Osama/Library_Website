@@ -1,0 +1,24 @@
+<!-- user_form.html -->
+{% extends 'adminbase.html' %}
+
+{%block title%}
+    <title>Edit User - Hayah online library</title>
+{%endblock%}
+
+{%load static%}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{%static 'css/user_form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div id="edituser">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
